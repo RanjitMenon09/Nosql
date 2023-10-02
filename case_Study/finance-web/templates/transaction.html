@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<table align="right">
+    <tr>
+        <td style="background-color:bisque; color: black;">
+            <a href="{{ url_for('customer', username=username, transactionCount=transactionCount) }}">prev page</a>
+        </td>
+    </tr>
+</table>
+<h2 >Transaction Information for Account Id : {{accountid}} </h2>
+
+<h3> Group By Symbol and Transaction Code</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Transaction Code</th>
+            <th>Total Scrips</th>
+            <th>Total Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for result in grpby_results %}
+        <tr>
+            <td>{{ result.symbol }}</td>
+            <td>{{ result.transaction_code }}</td>
+            <td>{{ result.total_amount }}</td>
+            <td>{{ result.total_price|float|round(2)}}</td>
+            <td>{{ result.total|float|round(2)}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h3>All Transaction Results</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Transaction Code</th>
+            <th>Date</th>
+            <th>Scrips</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for result in tran_results %}
+        <tr>
+            <td>{{ result.symbol }}</td>
+            <td>{{ result.transaction_code }}</td>
+            <td>{{ result.date }}</td>
+            <td>{{ result.amount }}</td>
+            <td>{{ result.price|float|round(2)}}</td>
+            <td>{{ result.total|float|round(2)}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

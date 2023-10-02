@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header style="display: flex; justify-content: space-between; align-items: flex-end; height: 100px; background-color: olive;">
+        <div style="display: flex; align-items: center;">
+            <div>
+                <img src="{{ url_for('static', filename='images/top-banner.jpg') }}" alt="top-banner" style="height: 100px;">
+            </div>
+            <div>&nbsp;</div>
+            <div>
+                <h1 style="margin: 0; text-align: left;">Financial Analysis</h1>
+            </div>
+        </div>        
+        <div>
+            <nav>
+                <ul style="display: flex; list-style: none; padding: 0;">
+                    <li><a href="/">Home</a></li>                    
+                </ul>
+            </nav>           
+        </div>
+    </header>        
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; Global finance mantics 2023</p>
+    </footer>
+</body>
+</html>

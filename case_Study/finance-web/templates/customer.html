@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>Customer Information</h2>
+    <table>
+        {% for result in customer_result %}
+        <tr>
+            <td class="styled-text">Customer Name</td>
+            <td>{{ result.name }}</td>
+            <td>&nbsp;</td> 
+            <td>&nbsp;</td>      
+            <td class="styled-text">Birth Date</td>
+            <td>{{ result.birthdate }}</td>                         
+        </tr>        
+        <tr>
+            <td class="styled-text">Customer Email</td>
+            <td>{{ result.email }}</td>
+            <td>&nbsp;</td> 
+            <td>&nbsp;</td>      
+            <td class="styled-text">Customer UserName</td>
+            <td>{{ result.username }}</td>                     
+        </tr>
+        {% endfor %}       
+    </table> 
+    <h2>Account Information</h2>
+    <table>
+        <tr>
+            <th >Account Id</th>
+            <th >Limit</th>
+            <th >Products</th>
+        </tr>
+        {% for result in account_result %}
+        <tr>
+            <td>
+                <a href="{{ url_for('transaction', accountid=result.account_id,username=username,transactionCount=transactionCount)}}">
+                    {{ result.account_id }}
+                </a>
+            </td>                     
+            <td>{{ result.limit }}</td>           
+            <td style="width: 400px;">{{ ', '.join(result.products) }}</td>                        
+        </tr>              
+        {% endfor %}      
+    </table>    
+   
+{% endblock %}

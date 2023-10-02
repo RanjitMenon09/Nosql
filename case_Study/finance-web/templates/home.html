@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>Finance Report</h2>
+    
+    <!-- Search Box Section -->
+    <div style="height: 100px; margin: 0 20px;">
+        <form id="searchForm" method="POST" action="/">
+            <div style="display: inline-block; margin-right: 10px;">
+                <label for="customerName">Cust Name:</label>
+                <input type="text" id="customerName" name="customerName" size="20">
+            </div>
+            <div style="display: inline-block; margin-right: 10px;">
+                <label for="accountLimit">Account Limit:</label>
+                <select id="accountLimitOperator" name="accountLimitOperator">
+                    <option value="gte">>=</option>
+                    <option value="lte"><=</option>
+                    <option value="eq">=</option>
+                </select>
+                <input type="number" id="accountLimit" name="accountLimit" size="20">
+            </div>
+            <div style="text-align: right;">
+                <button type="submit">Search</button>
+            </div>
+        </form>
+    </div>                  
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Account Limit</th>
+                <th>Transaction count</th>                              
+            </tr>
+        </thead>
+        <tbody>          
+            {% for result in results %}
+            <tr>
+                <td><a href="{{ url_for('customer', username=result.userName, transactionCount=result.transactionCount) }}">
+                    {{ result.name }}
+                  </a>
+                </td>
+                <td>{{ result.email }}</td>
+                <td>{{ result.userName }}</td>
+                <td>{{ result.accountLimit }}</td>
+                <td>{{ result.transactionCount }}</td>                               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}
